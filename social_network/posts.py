@@ -22,8 +22,12 @@ class TextPost(Post):
             super(TextPost, self).__init__(text, timestamp)
 
     def __str__(self):
-        return f'@{self.user.first_name} {self.user.last_name}: "{self.text}"' \
-            f'\n\t{datetime.strftime(self.timestamp, "%A, %b %d, %Y")}'
+        return '@{} {}: "{}"\n\t{}'.format(
+            self.user.first_name,
+            self.user.last_name,
+            self.text,
+            datetime.strftime(self.timestamp, "%A, %b %d, %Y")
+        )
 
 
 class PicturePost(Post):
@@ -35,9 +39,13 @@ class PicturePost(Post):
         self.image_url = image_url
 
     def __str__(self):
-        return f'@{self.user.first_name} {self.user.last_name}: "{self.text}"' \
-            f'\n\t{self.image_url}\n\t' \
-            f'{datetime.strftime(self.timestamp, "%A, %b %d, %Y")}'
+        return '@{} {}: "{}"\n\t{}\n\t{}'.format(
+            self.user.first_name,
+            self.user.last_name,
+            self.text,
+            self.image_url,
+            datetime.strftime(self.timestamp, "%A, %b %d, %Y")
+        )
 
 
 class CheckInPost(Post):
@@ -50,6 +58,10 @@ class CheckInPost(Post):
         self.longitude = longitude
 
     def __str__(self):
-        return f'@{self.user.first_name} Checked In: "{self.text}"\n\t' \
-            f'{self.latitude}, {self.longitude}\n\t' \
-            f'{datetime.strftime(self.timestamp, "%A, %b %d, %Y")}'
+        return '@{} Checked In: "{}"\n\t{}, {}\n\t{}'.format(
+            self.user.first_name,
+            self.text,
+            self.latitude,
+            self.longitude,
+            datetime.strftime(self.timestamp, "%A, %b %d, %Y")
+        )
