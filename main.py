@@ -41,5 +41,6 @@ def main():
     for post in john.get_timeline():
         print(post)
 
+
 if __name__ == '__main__':
     main()
